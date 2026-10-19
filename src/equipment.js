@@ -21,20 +21,19 @@ export const categories = [
 ]
 
 // Row end-cap color per category, sampled from the background gradient
-// (yellow → orange → red → pink). Runs opposite to the background behind the
-// table, which is red/pink at the top, so the first categories stand out most.
+// (gold → orange → pink → magenta → purple → blue).
 export const categoryColors = {
-  'Cameras + Camera Accessories': '#fec644',
-  'Lenses (Analog)': '#fcb537',
-  'Lenses (Digital)': '#f9a32b',
-  'Cables + Adapters': '#f6901e',
-  'Computers + Software': '#f47620',
-  'Tripods, Supports, Rigs': '#f36c21',
-  'Virtual Reality': '#f15829',
-  'AV Presentation': '#ef423e',
-  Other: '#ee395f',
-  Audio: '#ee417f',
-  'Lighting, Studio': '#ee4895',
+  'Cameras + Camera Accessories': '#e3a770',
+  'Lenses (Analog)': '#f16738',
+  'Lenses (Digital)': '#ea5d47',
+  'Cables + Adapters': '#e44c58',
+  'Computers + Software': '#d9316a',
+  'Tripods, Supports, Rigs': '#c91b7a',
+  'Virtual Reality': '#ae208a',
+  'AV Presentation': '#92288f',
+  Other: '#87459b',
+  Audio: '#7f71b3',
+  'Lighting, Studio': '#789ccf',
 }
 
 export async function fetchEquipment() {
