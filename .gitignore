@@ -1,3 +1,10 @@
 node_modules
 dist
 .DS_Store
+
+# Design source files and PDFs (kept locally, not part of the site)
+*.pdf
+*.indd
+/*.svg
+/*.avif
+/EQUIPMENT - Desktop/
