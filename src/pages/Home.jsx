@@ -1,9 +1,15 @@
 import { Link } from 'react-router-dom'
 import { contact, hours } from '../handbook'
+import stockroomImg from '../assets/stockroom-img.avif'
 
 export default function Home() {
   return (
     <div className="home">
+      <img
+        className="home-photo"
+        src={stockroomImg}
+        alt="Stockroom key board with labeled room keys and the daily inventory clipboard"
+      />
       <section className="home-mission">
         <h2>Mission Statement</h2>
         <p>

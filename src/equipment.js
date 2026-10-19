@@ -20,6 +20,23 @@ export const categories = [
   'Lighting, Studio',
 ]
 
+// Row end-cap color per category, sampled from the background gradient
+// (yellow → orange → red → pink). Runs opposite to the background behind the
+// table, which is red/pink at the top, so the first categories stand out most.
+export const categoryColors = {
+  'Cameras + Camera Accessories': '#fec644',
+  'Lenses (Analog)': '#fcb537',
+  'Lenses (Digital)': '#f9a32b',
+  'Cables + Adapters': '#f6901e',
+  'Computers + Software': '#f47620',
+  'Tripods, Supports, Rigs': '#f36c21',
+  'Virtual Reality': '#f15829',
+  'AV Presentation': '#ef423e',
+  Other: '#ee395f',
+  Audio: '#ee417f',
+  'Lighting, Studio': '#ee4895',
+}
+
 export async function fetchEquipment() {
   const res = await fetch(SHEET_CSV_URL)
   if (!res.ok) throw new Error(`Failed to load inventory (${res.status})`)

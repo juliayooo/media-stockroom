@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
-import { categories, fetchEquipment } from '../equipment'
+import { categories, categoryColors, fetchEquipment } from '../equipment'
+
+// Mount only matters for cameras, so that column is shown only while camera rows are listed.
+const CAMERAS = 'Cameras + Camera Accessories'
 
 export default function Equipment() {
   const [query, setQuery] = useState('')
@@ -28,9 +31,11 @@ export default function Equipment() {
       (item.item.toLowerCase().includes(q) || item.type.toLowerCase().includes(q)),
   )
 
+  const showMount = rows.some((item) => item.section === CAMERAS)
+
   return (
     <div className="equipment">
-      <aside className="sidebar">
+      <div className="filters">
         <input
           className="search"
           type="search"
@@ -43,6 +48,7 @@ export default function Equipment() {
             <li key={category}>
               <button
                 className={selected.includes(category) ? 'active' : ''}
+                aria-pressed={selected.includes(category)}
                 onClick={() => toggle(category)}
               >
                 {category}
@@ -50,45 +56,39 @@ export default function Equipment() {
             </li>
           ))}
         </ul>
-      </aside>
+      </div>
 
       <div className="table-wrap">
-        <table className="equipment-table">
-          <colgroup>
-            <col className="col-type" />
-            <col className="col-item" />
-            <col className="col-auth" />
-            <col className="col-mount" />
-            <col className="col-included" />
-          </colgroup>
-          <thead>
-            <tr>
-              <th>Category</th>
-              <th>Name</th>
-              <th>Auth</th>
-              <th>Mount</th>
-              <th>Included</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((item) => (
-              <tr key={item.id}>
-                <td>{item.type}</td>
-                <td>{item.item}</td>
-                <td>{item.auth}</td>
-                <td>{item.mount}</td>
-                <td>{item.included}</td>
-              </tr>
-            ))}
-          </tbody>
-          {status !== 'ready' || rows.length === 0 ? (
-            <caption className="table-status">
+        <div className={`equipment-table${showMount ? ' with-mount' : ''}`} role="table">
+          <div className="equipment-head" role="row">
+            <span role="columnheader">Category</span>
+            <span role="columnheader">Name</span>
+            <span role="columnheader">Auth</span>
+            <span role="columnheader">Included</span>
+            {showMount && <span role="columnheader">Mount</span>}
+          </div>
+          {rows.map((item) => (
+            <div
+              className="equipment-row"
+              role="row"
+              key={item.id}
+              style={{ '--row-color': categoryColors[item.section] }}
+            >
+              <span role="cell">{item.type}</span>
+              <span role="cell" className="item-name">{item.item}</span>
+              <span role="cell">{item.auth}</span>
+              <span role="cell">{item.included}</span>
+              {showMount && <span role="cell">{item.mount}</span>}
+            </div>
+          ))}
+          {(status !== 'ready' || rows.length === 0) && (
+            <p className="table-status">
               {status === 'loading' && 'Loading equipment…'}
               {status === 'error' && 'Could not load equipment. Please try again later.'}
               {status === 'ready' && 'No equipment matches.'}
-            </caption>
-          ) : null}
-        </table>
+            </p>
+          )}
+        </div>
       </div>
     </div>
   )
