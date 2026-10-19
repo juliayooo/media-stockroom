@@ -191,7 +191,7 @@ export const sections = [
     "items": [
       "The Media Stockroom Laptops are designated for short term loans and cannot be used for extended periods.",
       "Laptops can only be checked out for 2 days at a time. Once the laptop is returned, users will be required to wait 1 business day before they are able to check one out again.",
-      "Users must first log into the laptop with their Tufts UTLN and password while on the SMFA campus After this initial log in, users can use the laptops at any location."
+      "Users must first log into the laptop with their Tufts UTLN and password while on the SMFA campus. After this initial log in, users can use the laptops at any location."
     ]
   },
   {
