@@ -1,4 +1,8 @@
+import cords from '../assets/cords.png'
+import { forms } from '../forms'
 import { contact, hours } from '../handbook'
+
+const QUICK_LINKS = ['Equipment Reservations', 'User Agreement Form']
 
 export default function Footer() {
   return (
@@ -31,6 +35,19 @@ export default function Footer() {
               ))}
             </tbody>
           </table>
+        </div>
+        <div className="footer-side">
+          <h2>Quick Links</h2>
+          <ul className="footer-links">
+            {forms
+              .filter((form) => QUICK_LINKS.includes(form.title))
+              .map((form) => (
+                <li key={form.title}>
+                  <a href={form.url} target="_blank" rel="noreferrer">{form.title}</a>
+                </li>
+              ))}
+          </ul>
+          <img className="footer-cords" src={cords} alt="" />
         </div>
       </div>
     </footer>
