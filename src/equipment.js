@@ -1,7 +1,7 @@
 import Papa from 'papaparse'
 
 // The inventory Google Sheet (must be shared as "Anyone with the link can view").
-// Columns: id, section, type, item, qty, auth, mount, description, included, checkout_accessories
+// Columns: id, section, type, item, qty, authorization, mount, description, included, checkout_accessories
 const SHEET_ID = '1CY_kaIjr_Jj7FELEWhKOC9LtfbmHiyKZUa10sjPRf6k'
 const SHEET_CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`
 

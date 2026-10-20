@@ -12,6 +12,7 @@ export default function Navbar() {
         <img src={logo} alt="SMFA Tufts Media Stockroom" />
       </Link>
       <nav className="nav-links">
+         <NavLink to="/equipment">Equipment</NavLink>
         <NavLink to="/handbook">Handbook</NavLink>
         <div
           className="dropdown"
@@ -31,7 +32,7 @@ export default function Navbar() {
             </ul>
           )}
         </div>
-        <NavLink to="/equipment">Equipment</NavLink>
+       
       </nav>
     </header>
   )

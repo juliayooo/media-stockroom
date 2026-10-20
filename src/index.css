@@ -1,7 +1,7 @@
 :root {
   --text: #fff;
   --rule: rgba(255, 255, 255, 0.85);
-  --glass: rgba(255, 255, 255, 0.72);
+  --glass: rgba(174, 174, 174, 0.283);
   --search-stroke: rgba(0, 0, 0, 0.28);
   --font-display: 'Montserrat', sans-serif;
   --font-body: Arial, Helvetica, sans-serif;
@@ -209,13 +209,8 @@ main {
 }
 
 .equipment-table {
-  --columns: 18fr 24fr 8fr 50fr;
-  min-width: 640px;
-}
-
-.equipment-table.with-mount {
-  --columns: 16fr 20fr 7fr 35fr 22fr;
-  min-width: 760px;
+  /* name, category, qty, auth, description, included, accessories */
+  --columns: 20fr 13fr 5fr 6fr 16fr 22fr 18fr;
 }
 
 .equipment-head,
@@ -228,11 +223,12 @@ main {
 
 .equipment-head {
   margin-top: 36px;
-  padding: 0 24px 16px;
+  padding: 0 calc(24px + 28px) 12px 24px; /* match row padding incl. color cap */
   border-bottom: 1px solid var(--rule);
-  font-size: 18px;
+  font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
+  opacity: 0.75;
 }
 
 .equipment-row {
@@ -240,14 +236,14 @@ main {
   min-height: 55px;
   margin-top: 12px;
   padding: 14px calc(24px + var(--cap)) 14px 24px;
-  font-size: 18px;
+  font-size: 15px;
   line-height: 1.3;
-  color: #1a1a1a;
+  color: white;
   background: linear-gradient(to left, var(--row-color, transparent) var(--cap), var(--glass) var(--cap));
   -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
   border-radius: 28px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
 }
 
 .equipment-head:first-child + .equipment-row {
@@ -259,6 +255,7 @@ main {
 }
 
 .equipment-row .item-name {
+  font-size: 18px;
   font-weight: 700;
 }
 
@@ -275,7 +272,7 @@ main {
   background: var(--glass);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
-  color: #1a1a1a;
+  color: white;
   line-height: 1.6;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -293,7 +290,7 @@ main {
 }
 
 .handbook a {
-  color: #c2410c;
+  color: #f6ff8d;
   text-decoration: underline;
 }
 
@@ -309,6 +306,7 @@ main {
 .handbook-toc {
   padding: 4px 24px 12px;
   border: 1px solid #e5e5e5;
+  border-radius: 30px;
 }
 
 .handbook-toc h2 {
@@ -355,7 +353,7 @@ main {
   background: var(--glass);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
-  color: #1a1a1a;
+  color: white;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   font-size: 16px;
@@ -372,7 +370,7 @@ main {
 }
 
 .home a {
-  color: #c2410c;
+  color: #f6ff8d;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -411,8 +409,8 @@ main {
 
 /* Footer */
 .footer {
-  background: #000;
-  color: #fff;
+  color: #fff9fe;
+  background: #000000;
   font-size: 15px;
 }
 
@@ -485,9 +483,52 @@ main {
     flex: none;
   }
 
-  .equipment-head,
+  .categories {
+    gap: 4px 16px;
+  }
+
+  .categories button {
+    white-space: normal;
+  }
+
+  /* Table rows become stacked cards with inline labels */
+  .equipment-head {
+    display: none;
+  }
+
   .equipment-row {
+    grid-template-columns: 1fr;
+    row-gap: 4px;
+    align-items: start;
+    margin-top: 16px;
+    padding: 16px calc(20px + var(--cap)) 16px 20px;
     font-size: 16px;
+    border-radius: 20px;
+  }
+
+  .equipment-row span {
+    display: flex;
+    gap: 12px;
+  }
+
+  .equipment-row span::before {
+    content: attr(data-label);
+    flex: 0 0 104px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.6;
+    text-transform: uppercase;
+    opacity: 0.75;
+  }
+
+  .equipment-row .item-name {
+    order: -1;
+    margin-bottom: 4px;
+    font-size: 18px;
+  }
+
+  .equipment-row .item-name::before {
+    content: none;
   }
 
   .handbook,
