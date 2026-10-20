@@ -45,7 +45,7 @@ export const sections = [
       "The Media Stockroom provides short-term equipment loans to all members of the Tufts community for the purposes of teaching and learning. All equipment housed in the Media Stockroom is available to all students, faculty, and staff (“users”) regardless of their department or class enrollment.",
       "The purpose of the Media Stockroom is to allow all users the ability to access the equipment they need to create artwork and facilitate their studies. The Media Stockroom gives equal opportunity to all students to use the equipment that the Stockroom offers, with certain equipment requiring proper authorization and training.",
       "The equipment in the Media Stockroom is a shared resource. We encourage users to be mindful of this when checking out equipment.",
-      "The Media Stockroom is an SMFA Studio Resource. The Media Stockroom Handbook provides users with information about policies and procedures that are specific to the operations of the Media Stockroom. Any questions about the handbook can be directed to the Media Stockroom email address smfamediastockoom@tufts.edu."
+      "The Media Stockroom is an SMFA Studio Resource. The Media Stockroom Handbook provides users with information about policies and procedures that are specific to the operations of the Media Stockroom. Any questions about the handbook can be directed to the Media Stockroom email address smfamediastockroom@tufts.edu."
     ]
   },
   {
@@ -59,7 +59,7 @@ export const sections = [
       "Students may be required to take a class to be trained on certain types of equipment because the nature of the equipment.",
       "Teaching Assistants may deliver equipment training under the supervision of a faculty member.",
       "The following groups cannot deliver equipment training for authorization: Media Stockroom student staff, Assistants in Class (AICs), or students who have already been trained on the equipment. Any training or demonstration conducted by these groups does not meet the training requirement for equipment authorization.",
-      "After a faculty member or studio anager delivers a training, they must submit a Media Stockroom Equipment Authorization Form to confirm that the user has received the proper training.",
+      "After a faculty member or studio manager delivers a training, they must submit a Media Stockroom Equipment Authorization Form to confirm that the user has received the proper training.",
       "It may take up to 2 business days for the authorization to go into effect.",
       "Media Stockroom equipment authorizations carry over from semester-to-semester until a user is no longer affiliated with the school.",
       "In the event of equipment abuse, misuse, or neglect, the Media Stockroom may require that users be retrained on equipment before they can check it out again."

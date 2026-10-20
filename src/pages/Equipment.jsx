@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react'
 import { categories, categoryColors, fetchEquipment } from '../equipment'
 
-// Mount only matters for cameras, so that column is shown only while camera rows are listed.
-const CAMERAS = 'Cameras + Camera Accessories'
-
 export default function Equipment() {
   const [query, setQuery] = useState('')
   const [selected, setSelected] = useState([])
@@ -31,8 +28,6 @@ export default function Equipment() {
       (item.item.toLowerCase().includes(q) || item.type.toLowerCase().includes(q)),
   )
 
-  const showMount = rows.some((item) => item.section === CAMERAS)
-
   return (
     <div className="equipment">
       <div className="filters">
@@ -59,13 +54,15 @@ export default function Equipment() {
       </div>
 
       <div className="table-wrap">
-        <div className={`equipment-table${showMount ? ' with-mount' : ''}`} role="table">
+        <div className="equipment-table" role="table">
           <div className="equipment-head" role="row">
-            <span role="columnheader">Category</span>
             <span role="columnheader">Name</span>
-            <span role="columnheader">Auth</span>
+            <span role="columnheader">Category</span>
+            <span role="columnheader">Qty</span>
+            <span role="columnheader">Require Auth</span>
+            <span role="columnheader">Description</span>
             <span role="columnheader">Included</span>
-            {showMount && <span role="columnheader">Mount</span>}
+            <span role="columnheader">Accessories Available</span>
           </div>
           {rows.map((item) => (
             <div
@@ -74,11 +71,15 @@ export default function Equipment() {
               key={item.id}
               style={{ '--row-color': categoryColors[item.section] }}
             >
-              <span role="cell">{item.type}</span>
-              <span role="cell" className="item-name">{item.item}</span>
-              <span role="cell">{item.auth}</span>
-              <span role="cell">{item.included}</span>
-              {showMount && <span role="cell">{item.mount}</span>}
+              <span role="cell" className="item-name" data-label="Name">{item.item}</span>
+              <span role="cell" data-label="Category">{item.type}</span>
+              <span role="cell" data-label="Qty">{item.qty}</span>
+              <span role="cell" data-label="Auth">{item.authorization}</span>
+              <span role="cell" data-label="Description">
+                {[item.description, item.mount].filter(Boolean).join(', ')}
+              </span>
+              <span role="cell" data-label="Included">{item.included}</span>
+              <span role="cell" data-label="Accessories">{item.checkout_accessories}</span>
             </div>
           ))}
           {(status !== 'ready' || rows.length === 0) && (
