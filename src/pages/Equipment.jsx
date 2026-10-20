@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { categories, categoryColors, fetchEquipment } from '../equipment'
+import { categoryColors, fetchEquipment } from '../equipment'
 
 export default function Equipment() {
   const [query, setQuery] = useState('')
@@ -21,6 +21,15 @@ export default function Equipment() {
       prev.includes(category) ? prev.filter((c) => c !== category) : [...prev, category],
     )
 
+  const filtering = query !== '' || selected.length > 0
+  const clearFilters = () => {
+    setQuery('')
+    setSelected([])
+  }
+
+  // Categories in the order they first appear in the sheet
+  const categories = [...new Set(equipment.map((item) => item.section))]
+
   const q = query.toLowerCase()
   const rows = equipment.filter(
     (item) =>
@@ -31,13 +40,18 @@ export default function Equipment() {
   return (
     <div className="equipment">
       <div className="filters">
-        <input
-          className="search"
-          type="search"
-          placeholder="Search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
+        <div className="search-group">
+          <input
+            className="search"
+            type="search"
+            placeholder="Search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <button className="clear-filters" onClick={clearFilters} disabled={!filtering}>
+            Clear filters
+          </button>
+        </div>
         <ul className="categories">
           {categories.map((category) => (
             <li key={category}>

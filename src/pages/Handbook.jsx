@@ -2,6 +2,15 @@ import { contact, hours, sections } from '../handbook'
 
 const slug = (title) => title.toLowerCase().replace(/[^a-z0-9]+/g, '-')
 
+// The app uses HashRouter, so a plain #anchor would be read as a route. Scroll instead.
+function TocLink({ id, children }) {
+  const scroll = (e) => {
+    e.preventDefault()
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  }
+  return <a href={`#${id}`} onClick={scroll}>{children}</a>
+}
+
 // Turn email addresses in handbook text into mailto links
 function Text({ children }) {
   return children.split(/(\S+@\S+\.edu)/g).map((part, i) =>
@@ -34,9 +43,9 @@ export default function Handbook() {
       <nav className="handbook-toc">
         <h2>Contents</h2>
         <ol>
-          <li><a href="#contact-information">Contact Information</a></li>
+          <li><TocLink id="contact-information">Contact Information</TocLink></li>
           {sections.map((s) => (
-            <li key={s.title}><a href={`#${slug(s.title)}`}>{s.title}</a></li>
+            <li key={s.title}><TocLink id={slug(s.title)}>{s.title}</TocLink></li>
           ))}
         </ol>
       </nav>

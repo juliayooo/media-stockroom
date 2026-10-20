@@ -16,6 +16,11 @@
   box-sizing: border-box;
 }
 
+/* No elastic bounce past the footer, which would reveal the body background */
+html {
+  overscroll-behavior-y: none;
+}
+
 body {
   margin: 0;
   color: var(--text);
@@ -149,8 +154,16 @@ main {
   color: var(--search-stroke);
 }
 
-.search {
+.search-group {
   flex: 0 0 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.search {
+  width: 100%;
   height: 32px;
   padding: 0 14px 0 40px;
   font: 16px var(--font-body);
@@ -162,6 +175,20 @@ main {
 
 .search::placeholder {
   color: #757575;
+}
+
+.clear-filters {
+  padding-left: 14px;
+  font-size: 14px;
+  color: #1a1a1a;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.clear-filters:disabled {
+  color: #757575;
+  text-decoration: none;
+  cursor: default;
 }
 
 .categories {
@@ -290,7 +317,7 @@ main {
 }
 
 .handbook a {
-  color: #f6ff8d;
+  color: #ffe88d;
   text-decoration: underline;
 }
 
@@ -370,7 +397,7 @@ main {
 }
 
 .home a {
-  color: #f6ff8d;
+  color: #ffe88d;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -409,26 +436,33 @@ main {
 
 /* Footer */
 .footer {
+  --footer-pad: calc(var(--space) * 1.5);
   color: #fff9fe;
   background: #000000;
   font-size: 15px;
+  line-height: 1.7;
 }
 
+/* Contact on the left edge, quick links on the right edge, hours between */
 .footer-inner {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space) calc(var(--space) * 2);
-  padding-top: var(--space);
-  padding-bottom: var(--space);
+  justify-content: space-between;
+  gap: var(--space);
+  max-width: 1040px; /* a little narrower than the page, for room at the sides */
+  padding: var(--footer-pad) calc(var(--gutter) + var(--space));
 }
 
 .footer h2 {
-  margin: 0 0 12px;
+  margin: 0 0 16px;
   font-size: 15px;
 }
 
 .footer p {
-  margin: 0 0 12px;
+  margin: 0 0 16px;
+}
+
+.footer p:last-child {
+  margin-bottom: 0;
 }
 
 .footer a {
@@ -440,10 +474,63 @@ main {
   border-collapse: collapse;
 }
 
+/* Same line spacing as the contact text so rows line up across columns */
 .footer th,
 .footer td {
-  padding: 2px 24px 2px 0;
+  padding: 0 24px 0 0;
   text-align: left;
+  white-space: nowrap;
+}
+
+.footer td {
+  padding-right: 0;
+}
+
+.footer-links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Quick links column; the cords hang off its bottom-right corner */
+.footer-side {
+  position: relative;
+  min-width: 200px;
+}
+
+/* Decorative, sitting flush on the footer's bottom edge without adding height */
+.footer-cords {
+  position: absolute;
+  right: 0;
+  bottom: calc(var(--footer-pad) * -1);
+  height: 160px;
+  pointer-events: none;
+}
+
+/* Footer stacks once its three columns no longer fit on one row */
+@media (max-width: 960px) {
+  .footer {
+    --footer-pad: calc(var(--space) * 2);
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+
+  /* Cords go back in the flow below the links */
+  .footer-side {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-cords {
+    position: static;
+    align-self: flex-end;
+    height: 160px;
+    margin-bottom: calc(var(--footer-pad) * -1);
+  }
 }
 
 /* Small screens */
@@ -479,7 +566,7 @@ main {
     padding: 20px;
   }
 
-  .search {
+  .search-group {
     flex: none;
   }
 
